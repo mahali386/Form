@@ -1,42 +1,22 @@
 /*
-		Designed by: SELECTO
-		Original image: https://dribbble.com/shots/5311359-Diprella-Login
+		Designed by: Jarlan Perez
+		Original image: https://www.artstation.com/artwork/VdBllN
+
 */
 
-let switchCtn = document.querySelector("#switch-cnt");
-let switchC1 = document.querySelector("#switch-c1");
-let switchC2 = document.querySelector("#switch-c2");
-let switchCircle = document.querySelectorAll(".switch__circle");
-let switchBtn = document.querySelectorAll(".switch-btn");
-let aContainer = document.querySelector("#a-container");
-let bContainer = document.querySelector("#b-container");
-let allButtons = document.querySelectorAll(".submit");
 
-let getButtons = (e) => e.preventDefault()
+const h = document.querySelector("#h");
+const b = document.body;
 
-let changeForm = (e) => {
-
-    switchCtn.classList.add("is-gx");
-    setTimeout(function(){
-        switchCtn.classList.remove("is-gx");
-    }, 1500)
-
-    switchCtn.classList.toggle("is-txr");
-    switchCircle[0].classList.toggle("is-txr");
-    switchCircle[1].classList.toggle("is-txr");
-
-    switchC1.classList.toggle("is-hidden");
-    switchC2.classList.toggle("is-hidden");
-    aContainer.classList.toggle("is-txl");
-    bContainer.classList.toggle("is-txl");
-    bContainer.classList.toggle("is-z200");
+let base = (e) => {
+    var x = e.pageX / window.innerWidth - 0.5;
+    var y = e.pageY / window.innerHeight - 0.5;
+    h.style.transform = `
+        perspective(90vw)
+        rotateX(${ y * 4  + 75}deg)
+        rotateZ(${ -x * 12  + 45}deg)
+        translateZ(-9vw)
+    `;
 }
 
-let mainF = (e) => {
-    for (var i = 0; i < allButtons.length; i++)
-        allButtons[i].addEventListener("click", getButtons );
-    for (var i = 0; i < switchBtn.length; i++)
-        switchBtn[i].addEventListener("click", changeForm)
-}
-
-window.addEventListener("load", mainF);
+b.addEventListener("pointermove", base);
